@@ -1,0 +1,46 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile-app
+    image: my-app
+    container_name: my-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../myapp/:/myapp/
+    depends_on:
+      - db
+    command: [sh, -c, npm install && npm install -g nodemon && nodemon myapp start]
+  db:
+    image: mariadb:10.1.36
+    ports: 
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./sql/:./
+    environment:
+      - MYSQL_DATABASE=my_app
+      - MYSQL_USER=my_app
+      - MYSQL_PASSWORD=my_app
+      - MYSQL_ROOT_PASSWORD=my_app
+      - TERM=xterm
+    ulimits:
+      nproc: 65536
+      nofile:
+        soft: 20000
+        hard: 40000
+    container_name: myappdb
+volumes:
+  db_data:
+    driver: local
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+      - subnet: 192.168.42.1/24
