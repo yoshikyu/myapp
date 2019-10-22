@@ -4,7 +4,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-app
-    image: my-app
     container_name: my-app
     ports:
       - "3000:3000"
@@ -19,7 +18,6 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-      - ./sql/:./
     environment:
       - MYSQL_DATABASE=my_app
       - MYSQL_USER=my_app
