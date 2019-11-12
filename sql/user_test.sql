@@ -4,3 +4,4 @@ INSERT into texts (text, user_id) value ("hello", "1");
 INSERT into texts (text, user_id) value ("goodafternoon", "1");
 INSERT into texts (text, user_id) value ("goodnight", "1");
 INSERT into texts (text, user_id) value ("goodmorning", "1");
+INSERT into viewers (name, email, password) value ("test", "test@test", "testestes");

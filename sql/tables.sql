@@ -19,3 +19,15 @@ create table texts(
 		references users (id)
 		ON DELETE SET NULL ON UPDATE CASCADE
 );
+
+create table viewers(
+	id int auto_increment NOT NULL PRIMARY KEY, 
+	name varchar(255) not null,
+	email text not null,
+	password text not null,
+	user_id int,
+	constraint fk_user_id
+		foreign key (user_id)
+		references users (id)
+		ON DELETE SET NULL ON UPDATE CASCADE
+)

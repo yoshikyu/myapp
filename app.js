@@ -26,7 +26,7 @@ app.use(session({
 	saveUninitialized: true
 }))
 
-function sessionCheck (req, res, next){
+let sessionCheck  = function(req, res, next){
   if(req.session.viewer_id){
     next();
   }else{
