@@ -30,4 +30,4 @@ create table IF NOT EXISTS `viewers`(
 		foreign key (user_id)
 		references users (id)
 		ON DELETE SET NULL ON UPDATE CASCADE
-)
+);
