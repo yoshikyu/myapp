@@ -26,7 +26,7 @@ create table IF NOT EXISTS `viewers`(
 	email text not null,
 	password text not null,
 	user_id int,
-	constraint fk_user_id
+	constraint fk_user_id_for_viewers
 		foreign key (user_id)
 		references users (id)
 		ON DELETE SET NULL ON UPDATE CASCADE
