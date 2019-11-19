@@ -8,7 +8,7 @@ create table IF NOT EXISTS `users`(
 	created_at datetime default CURRENT_TIMESTAMP
 );
 
-create table texts(
+create table IF NOT EXISTS `texts`(
 	id int auto_increment NOT NULL PRIMARY KEY,
 	text text not null,
 	updated_at datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
