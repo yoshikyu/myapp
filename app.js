@@ -30,13 +30,13 @@ let sessionCheck  = function(req, res, next){
   if(req.session.viewer_id){
     next();
   }else{
-    res.redirect('login');
+    res.redirect('/login');
   }
 };
 
 app.use('/login', loginRouter);
+app.use('/users', sessionCheck, usersRouter);
 app.use('/', sessionCheck, indexRouter);
-app.use('/v1/users', usersRouter);
 
 
 // catch 404 and forward to error handler
