@@ -1,6 +1,6 @@
 {
 	"development": {
-		"DB_HOST": "192.168.42.2",
+		"DB_HOST": "172.168.42.1",
 		"DB_USER": "my_app",
 		"DB_PASS": "my_app",
 		"DB_NAME": "my_app"

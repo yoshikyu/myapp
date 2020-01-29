@@ -11,13 +11,14 @@ services:
       - ../myapp/:/myapp/
     depends_on:
       - db
-    command: [sh, -c, npm install && npm install -g nodemon && nodemon myapp start]
+    command: [sh, -c, npm install && npm install -g nodemon && npm install express-session --save && nodemon myapp start]
   db:
     image: mariadb:10.1.36
     ports: 
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./sql/:/sql/
     environment:
       - MYSQL_DATABASE=my_app
       - MYSQL_USER=my_app
@@ -41,4 +42,4 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: 192.168.42.1/24
+      - subnet: 172.168.42.1/24

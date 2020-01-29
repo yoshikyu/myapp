@@ -6,14 +6,23 @@ const connection = require('../mysqlconnect.js');
 /* GET users listing. */
 router.get('/:userId', function(req, res, next) {
 	let user_id = req.params.userId;
-	let sql = `select name, age from users where id = ${user_id}`;
+	let viewer_id = req.session.viewer_id.id.id;
+	sql = `select user_id from viewers where id = ${viewer_id}`;
 	connection.query(sql, function(err, rows){
-		if(err){
-			res.json({"Error":true, "Message": err});
+		let viewer_user_id = rows[0].user_id;
+		if(user_id == viewer_user_id ){
+			let sql = `select name, age from users where id = ${user_id}`;
+			connection.query(sql, function(err, rows){
+				if(err){
+					res.json({"Error":true, "Message": err});
+				}else{
+					res.json({"Error":false, "Message": "Success",  "Users": rows});
+				}
+			});
 		}else{
-			res.json({"Error":false, "Message": "Success",  "Users": rows});
+			res.json({"Error": true, "Message": "Permission denied"});
 		}
-	});
+	})
 });
 
 router.get('/:userId/texts', function(req, res, next){
